@@ -12,8 +12,12 @@ import Foundation
 import UIKit
 #elseif os(macOS)
 import Cocoa
-#else
+#elseif os(watchOS)
 import WatchKit
+#elseif os(visionOS)
+// import appropriate framework for visionOS
+#else
+// Handle other OS or provide a default
 #endif
 
 class AutomaticProperties {
@@ -58,6 +62,8 @@ class AutomaticProperties {
             let screenSize = watchDevice.screenBounds.size
             p["$screen_width"]      = Int(screenSize.width)
             p["$screen_height"]     = Int(screenSize.height)
+        #elseif os(visionOS)
+            p["$os"]                = "visionOS"
         #endif
 
         let infoDict = Bundle.main.infoDictionary ?? [:]
