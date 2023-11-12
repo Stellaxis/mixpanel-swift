@@ -203,7 +203,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
     static let reachability = SCNetworkReachabilityCreateWithName(nil, "api.mixpanel.com")
     static let telephonyInfo = CTTelephonyNetworkInfo()
 #endif
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
     var taskId = UIBackgroundTaskIdentifier.invalid
 #endif // os(OSX)
     let sessionMetadata: SessionMetadata
@@ -301,7 +301,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
 #endif
     }
     
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
     private func setupListeners() {
         let notificationCenter = NotificationCenter.default
         trackIntegration()
@@ -365,7 +365,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         return Bundle.main.bundlePath.hasSuffix(".appex")
     }
     
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
     static func sharedUIApplication() -> UIApplication? {
         guard let sharedApplication =
                 UIApplication.perform(NSSelectorFromString("sharedApplication"))?.takeUnretainedValue() as? UIApplication else {
@@ -389,7 +389,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
 #endif
     }
     
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
     @objc private func applicationDidEnterBackground(_ notification: Notification) {
         guard let sharedApplication = MixpanelInstance.sharedUIApplication() else {
             return

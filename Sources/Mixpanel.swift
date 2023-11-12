@@ -14,7 +14,7 @@ import UIKit
 /// The primary class for integrating Mixpanel with your app.
 open class Mixpanel {
     
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
     /**
      Initializes an instance of the API with the given project token.
      
@@ -126,7 +126,7 @@ open class Mixpanel {
                    "or define a new main instance if removing the main one")
             #endif
             
-#if !os(OSX) && !os(watchOS)
+#if !os(OSX) && !os(watchOS) && !os(visionOS)
             return Mixpanel.initialize(token: "", trackAutomaticEvents: true)
 #else
             return Mixpanel.initialize(token: "")
