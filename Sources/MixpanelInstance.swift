@@ -277,7 +277,7 @@ open class MixpanelInstance: CustomDebugStringConvertible, FlushDelegate, AEDele
         people.mixpanelInstance = self
         people.delegate = self
         flushInstance.flushInterval = flushInterval
-#if !os(watchOS)
+#if !os(watchOS) && !os(visionOS)
         setupListeners()
 #endif
         unarchive()
